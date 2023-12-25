@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TileSelector : MonoBehaviour
+public class SelectTile : MonoBehaviour
 {
     private Camera mainCamera;
     private TacticalMap tacticalMap;
@@ -11,14 +11,16 @@ public class TileSelector : MonoBehaviour
         tacticalMap = GetComponent<TacticalMap>();
     }
 
+
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-            if (Physics.Raycast(ray, out hit))
+            if (hit.collider != null)
             {
                 TacticalTile tacticalTile = hit.collider.GetComponent<TacticalTile>();
 
