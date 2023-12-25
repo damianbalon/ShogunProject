@@ -29,7 +29,7 @@ public class TacticalMap : MonoBehaviour
                     {
                         var overlayTile = Instantiate(tilePrefab, tileContainer.transform);
                         var cellWorldPosition = tileMap.GetCellCenterWorld(tileLocation);
-                        overlayTile.transform.position = new Vector3(cellWorldPosition.x,cellWorldPosition.y,cellWorldPosition.z+0.6f);
+                        overlayTile.transform.position = new Vector3(cellWorldPosition.x,cellWorldPosition.y-0.25f,cellWorldPosition.z+0.6f);
                         overlayTile.GetComponent<SpriteRenderer>().sortingOrder = tileMap.GetComponent<TilemapRenderer>().sortingOrder;
                         overlayTile.GridLocation = tileLocation;
                         map.Add(tileKey, overlayTile);
