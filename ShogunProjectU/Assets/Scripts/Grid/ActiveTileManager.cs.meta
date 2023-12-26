@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 8a8f9da626a64b84eb9ccb36fcc199e1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ActiveTileChangedEvent: {fileID: 11400000, guid: 395094b4326b96345abdacefd162c413, type: 2}
+  - ActiveTileClickedEvent: {fileID: 11400000, guid: 57c10cc37012d8849a3718744cce8245, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

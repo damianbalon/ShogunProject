@@ -8,7 +8,6 @@ public class TacticalMap : MonoBehaviour
 {
     [SerializeField]
     private TacticalTile tilePrefab;
-    public GameObject tileContainer;
     private Dictionary<Vector2Int, TacticalTile> map;
     void Awake() {
         var tileMap = gameObject.GetComponentInChildren<Tilemap>();
@@ -27,7 +26,7 @@ public class TacticalMap : MonoBehaviour
 
                     if(tileMap.HasTile(tileLocation) && !map.ContainsKey(tileKey))
                     {
-                        var overlayTile = Instantiate(tilePrefab, tileContainer.transform);
+                        var overlayTile = Instantiate(tilePrefab, gameObject.transform);
                         var cellWorldPosition = tileMap.GetCellCenterWorld(tileLocation);
                         overlayTile.transform.position = new Vector3(cellWorldPosition.x,cellWorldPosition.y-0.25f,cellWorldPosition.z+0.6f);
                         overlayTile.GetComponent<SpriteRenderer>().sortingOrder = tileMap.GetComponent<TilemapRenderer>().sortingOrder;
@@ -53,7 +52,7 @@ public class TacticalMap : MonoBehaviour
     void OnDestroy() {
         foreach(var i in map) {
             Destroy(i.Value.gameObject);
-            map.Remove(i.Key);
         }
+        map.Clear();
     }
 }

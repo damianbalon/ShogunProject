@@ -5,18 +5,23 @@
     public class TacticalTile : MonoBehaviour
     {
         private GameObject occupyingObject;
+
         public GameObject OccupyingObject {
             get {return occupyingObject;}
             set {occupyingObject = value;}
         }
+
         public bool isBlocked {
             get {return occupyingObject != null;}
         }
+
         private Vector3Int gridLocation;
+
         public Vector3Int GridLocation {
             get {return gridLocation;}
             set {gridLocation = value;}
         }
+
         // Start is called before the first frame update
         void Start()
         {
@@ -28,21 +33,4 @@
         {
             
         }
-
-        public void ShowTile()
-        {
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-        }
-
-         public void ShowTileFaint()
-         {
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
-         }
-
-         public void HideTile()
-         {
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
-         }
-
-    
     }
