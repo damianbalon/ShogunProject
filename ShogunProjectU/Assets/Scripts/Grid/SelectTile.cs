@@ -4,6 +4,7 @@ public class SelectTile : MonoBehaviour
 {
     private Camera mainCamera;
     private TacticalMap tacticalMap;
+    private TacticalTile pewiesTacticaltile;
 
     private void Start()
     {
@@ -11,22 +12,28 @@ public class SelectTile : MonoBehaviour
         tacticalMap = GetComponent<TacticalMap>();
     }
 
-
-
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction);
 
-            if (hit.collider != null)
+            System.Array.Sort(hits, (x, y) => x.distance.CompareTo(y.distance));
+
+            if (hits.Length > 0)
             {
-                TacticalTile tacticalTile = hit.collider.GetComponent<TacticalTile>();
+                TacticalTile tacticalTile = hits[hits.Length - 1].collider.GetComponent<TacticalTile>();
+
+                if (pewiesTacticaltile != null)
+                {
+                    pewiesTacticaltile.HideTile();
+                }
 
                 if (tacticalTile != null)
                 {
                     tacticalTile.ShowTile();
+                    pewiesTacticaltile = tacticalTile;
                 }
             }
         }
