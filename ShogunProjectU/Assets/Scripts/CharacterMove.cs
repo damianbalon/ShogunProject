@@ -6,10 +6,10 @@ public class CharacterMove : MonoBehaviour
 {
     public float speed = 5f;
     private Animator animator;
-    private Rigidbody2D rigidbody2D;
+    new private Rigidbody2D rigidbody2D;
     private TacticalTile occupiedTile;
     private GameObject positionMarker;
-    private Vector2 yOffset;
+    private float yOffset;
 
     private List<TacticalTile> path = new List<TacticalTile>();
 
@@ -48,7 +48,7 @@ public class CharacterMove : MonoBehaviour
             TacticalTile targetTile = path[0];
             Vector2 startPosition = occupiedTile.transform.position;
 
-            positionMarker.transform.position = new Vector2(transform.position.x, transform.position.y) - yOffset;
+            positionMarker.transform.position = new Vector2(transform.position.x, transform.position.y - yOffset);
 
             float step = speed * Time.deltaTime;
             float distanceToTarget = Vector2.Distance(positionMarker.transform.position, targetTile.transform.position);
@@ -64,8 +64,8 @@ public class CharacterMove : MonoBehaviour
 
                 if (path.Count > 1)
                 {
-                    animator.SetFloat("gridXChange", path[1].gridLocation.x - occupiedTile.gridLocation.x);
-                    animator.SetFloat("gridYChange", path[1].gridLocation.y - occupiedTile.gridLocation.y);
+                    animator.SetFloat("gridXChange", path[1].GridLocation.x - occupiedTile.GridLocation.x);
+                    animator.SetFloat("gridYChange", path[1].GridLocation.y - occupiedTile.GridLocation.y);
                 }
 
                 path.RemoveAt(0);
@@ -73,18 +73,28 @@ public class CharacterMove : MonoBehaviour
         }
     }
 
+    private void UnregisterOccupant() {
+        if(occupiedTile != null) {
+            occupiedTile.OccupyingObject = null;
+            occupiedTile = null;
+        }
+    }
+
+    private void RegisterOccupant(TacticalTile tile) {
+        if(occupiedTile != null) UnregisterOccupant();
+        tile.OccupyingObject = gameObject;
+        occupiedTile = tile;
+    }
+
+    //Ten patent z isBlocked to bym przerobił ale to jeszcze pomyślę
     public void MoveOnTile(TacticalTile tile)
     {
         transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, tile.transform.position.z + 0.75f);
         GetComponent<SpriteRenderer>().sortingOrder = tile.GetComponent<SpriteRenderer>().sortingOrder;
 
-        if (occupiedTile != null)
-            occupiedTile.isBlocked = false;
+        RegisterOccupant(tile);
 
-        occupiedTile = tile;
-        occupiedTile.isBlocked = true;
-
-        yOffset = Vector2.zero;
+        yOffset = 0;
         positionMarker.transform.position = transform.position;
     }
 
@@ -110,8 +120,8 @@ public class CharacterMove : MonoBehaviour
 
         if (path.Count > 0)
         {
-            animator.SetFloat("gridXChange", path[0].gridLocation.x - occupiedTile.gridLocation.x);
-            animator.SetFloat("gridYChange", path[0].gridLocation.y - occupiedTile.gridLocation.y);
+            animator.SetFloat("gridXChange", path[0].GridLocation.x - occupiedTile.GridLocation.x);
+            animator.SetFloat("gridYChange", path[0].GridLocation.y - occupiedTile.GridLocation.y);
         }
     }
 }

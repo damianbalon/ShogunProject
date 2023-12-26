@@ -4,6 +4,14 @@
 
     public class TacticalTile : MonoBehaviour
     {
+        private GameObject occupyingObject;
+        public GameObject OccupyingObject {
+            get {return occupyingObject;}
+            set {occupyingObject = value;}
+        }
+        public bool isBlocked {
+            get {return occupyingObject != null;}
+        }
         private Vector3Int gridLocation;
         public Vector3Int GridLocation {
             get {return gridLocation;}
