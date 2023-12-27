@@ -17,7 +17,7 @@ public class CharacterInitializer : MonoBehaviour//this class automatically alig
     {
         if(character.OccupiedTile != null) Destroy(this);
         LayerMask mask = LayerMask.NameToLayer("Tactical");
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position,Vector2.zero);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position,Vector2.zero, Mathf.Infinity, 1 << LayerMask.NameToLayer("Tactical"));
         if(hits.Length > 0)
         {
             System.Array.Sort(hits, (x, y) => x.distance.CompareTo(y.distance));

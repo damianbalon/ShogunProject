@@ -63,7 +63,7 @@ public class CharacterMove : MonoBehaviour
             yOffset = ((-Mathf.Pow(((xFraction - 0.5f) * 2), 2)) + 1) * 0.5f;
 
             positionMarker.transform.position = Vector2.MoveTowards(positionMarker.transform.position, targetTile.transform.position, step);
-            transform.position = new Vector3(positionMarker.transform.position.x, positionMarker.transform.position.y + yOffset, targetTile.transform.position.z + 1.3f);
+            transform.position = new Vector3(positionMarker.transform.position.x, positionMarker.transform.position.y + yOffset, targetTile.transform.position.z + 1.4f);
 
             if (Vector2.Distance(transform.position, targetTile.transform.position) < 0.01f)
             {
