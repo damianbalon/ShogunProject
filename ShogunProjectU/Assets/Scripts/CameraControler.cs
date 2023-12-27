@@ -105,12 +105,18 @@ public class CameraController : MonoBehaviour
 
     return currentSpeed;
 }
-
+    private bool OutOfBounds() {
+        if(Input.mousePosition.x < 0) return true;
+        if(Input.mousePosition.x > Screen.width) return true;
+        if(Input.mousePosition.y < 0) return true;
+        if(Input.mousePosition.y > Screen.height) return true;
+        return false;
+    }
 
     private void MoveCameraWithMouse()
 {
     float edgePadding = 25f; // Adjust this value based on how close to the edge you want the mouse to trigger camera movement
-
+if(!OutOfBounds()) {
     if (Input.mousePosition.x < edgePadding)
     {
         if (Input.mousePosition.y < edgePadding)
@@ -152,6 +158,8 @@ public class CameraController : MonoBehaviour
             MoveCameraManually(0f, 1f); // Move up
         }
     }
+}
+//else MoveCameraManually(0, 0);
 }
 
 

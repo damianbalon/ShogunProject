@@ -593,6 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  activeTileManager: {fileID: 0}
 --- !u!114 &868840733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,7 +610,7 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 6c72c29df034f114eb2a687bcad7ea2f, type: 3}
+      - m_Target: {fileID: 868840728}
         m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
         m_MethodName: set_name
         m_Mode: 5

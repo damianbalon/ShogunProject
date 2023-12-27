@@ -12,7 +12,10 @@ GameObject:
   - component: {fileID: 376768058398543798}
   - component: {fileID: 2620412686338474737}
   - component: {fileID: 6066484920771435610}
-  m_Layer: 0
+  - component: {fileID: 7608491628196141592}
+  - component: {fileID: 2490012071205051250}
+  - component: {fileID: 7964544115128425611}
+  m_Layer: 3
   m_Name: "mapa \u015Bwiata normalnie kurwa cudo"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4814894377249704116}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4602,8 +4605,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7626c213989eef479ecffab5451e4f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 0}
-  tileContainer: {fileID: 5791031281392864175}
+  tilePrefab: {fileID: 7321098871273261565, guid: f20319e4211b17b4cb50edb5d9f9b7b4, type: 3}
+  mapDoneEvent: {fileID: 11400000, guid: d1f32bde90eeee04c826c05f95293f45, type: 2}
+--- !u!114 &7608491628196141592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4814894377249704116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8f9da626a64b84eb9ccb36fcc199e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActiveTileChangedEvent: {fileID: 11400000, guid: 395094b4326b96345abdacefd162c413, type: 2}
+  ActiveTileClickedEvent: {fileID: 11400000, guid: 57c10cc37012d8849a3718744cce8245, type: 2}
+--- !u!114 &2490012071205051250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4814894377249704116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c59a1baae9688e47a95d9579c30848d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7964544115128425611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4814894377249704116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf28a79b859fe9d4b8a7fe34a9269b1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5791031281392864175
 GameObject:
   m_ObjectHideFlags: 0
@@ -4613,7 +4654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4418032659562093929}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: contanir
   m_TagString: Untagged
   m_Icon: {fileID: 0}

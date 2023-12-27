@@ -13,6 +13,9 @@ public class CharacterMove : MonoBehaviour
 
     private List<TacticalTile> path = new List<TacticalTile>();
 
+    public TacticalTile OccupiedTile {
+        get {return occupiedTile;}
+    }
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -22,10 +25,10 @@ public class CharacterMove : MonoBehaviour
 
     void Update()
     {
-        HandleMovementInput();
+        MoveAlongPath();
     }
 
-    void HandleMovementInput()
+    void HandleMovementInput() //chyba do testowania obracania postaci
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -56,7 +59,7 @@ public class CharacterMove : MonoBehaviour
             yOffset = ((-Mathf.Pow(((xFraction - 0.5f) * 2), 2)) + 1) * 0.5f;
 
             positionMarker.transform.position = Vector2.MoveTowards(positionMarker.transform.position, targetTile.transform.position, step);
-            transform.position = new Vector3(positionMarker.transform.position.x, positionMarker.transform.position.y + yOffset, targetTile.transform.position.z + 1);
+            transform.position = new Vector3(positionMarker.transform.position.x, positionMarker.transform.position.y + yOffset, targetTile.transform.position.z + 1.3f);
 
             if (Vector2.Distance(transform.position, targetTile.transform.position) < 0.01f)
             {
@@ -89,7 +92,7 @@ public class CharacterMove : MonoBehaviour
     //Ten patent z isBlocked to bym przerobił ale to jeszcze pomyślę
     public void MoveOnTile(TacticalTile tile)
     {
-        transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, tile.transform.position.z + 0.75f);
+        transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, tile.transform.position.z + 1.3f);
         GetComponent<SpriteRenderer>().sortingOrder = tile.GetComponent<SpriteRenderer>().sortingOrder;
 
         RegisterOccupant(tile);
@@ -120,8 +123,12 @@ public class CharacterMove : MonoBehaviour
 
         if (path.Count > 0)
         {
-            animator.SetFloat("gridXChange", path[0].GridLocation.x - occupiedTile.GridLocation.x);
-            animator.SetFloat("gridYChange", path[0].GridLocation.y - occupiedTile.GridLocation.y);
+            //animator.SetFloat("gridXChange", path[0].GridLocation.x - occupiedTile.GridLocation.x);
+            //animator.SetFloat("gridYChange", path[0].GridLocation.y - occupiedTile.GridLocation.y);
         }
+    }
+
+    public void MoveTowardsActive(ActiveTileManager from) {
+        MoveTowardsTile(from.ActiveTile);
     }
 }
