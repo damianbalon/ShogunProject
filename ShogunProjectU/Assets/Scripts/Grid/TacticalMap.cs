@@ -8,8 +8,13 @@ public class TacticalMap : MonoBehaviour
 {
     [SerializeField]
     private TacticalTile tilePrefab;
-    private Dictionary<Vector2Int, TacticalTile> map;
+    public Dictionary<Vector2Int, TacticalTile> map;
+    private static TacticalMap _instance;
+    public static TacticalMap Instance { get { return _instance; } }
+
     void Awake() {
+        if (_instance != null && _instance != this) Destroy(this.gameObject);
+        else _instance = this;
         var tileMap = gameObject.GetComponentInChildren<Tilemap>();
         BoundsInt bounds = tileMap.cellBounds;
         map = new Dictionary<Vector2Int, TacticalTile>();
