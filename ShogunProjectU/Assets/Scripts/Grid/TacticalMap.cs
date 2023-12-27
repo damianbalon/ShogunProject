@@ -9,7 +9,6 @@ public class TacticalMap : MonoBehaviour
     [SerializeField]
     private TacticalTile tilePrefab;
     private Dictionary<Vector2Int, TacticalTile> map;
-    [SerializeField] private GameEvent mapDoneEvent;
     void Awake() {
         var tileMap = gameObject.GetComponentInChildren<Tilemap>();
         BoundsInt bounds = tileMap.cellBounds;
@@ -37,7 +36,6 @@ public class TacticalMap : MonoBehaviour
                 }
             }
         }
-        mapDoneEvent.Raise();
     }
     // Start is called before the first frame update
     void Start()
