@@ -11,6 +11,7 @@ public class CharacterMove : MonoBehaviour
     private TacticalTile occupiedTile;
     private GameObject positionMarker;
     private float yOffset;
+    private Pathfinder pathfinder;
 
     private List<TacticalTile> path = new List<TacticalTile>();
 
@@ -22,7 +23,7 @@ public class CharacterMove : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         positionMarker = new GameObject("Position marker(" + name + ")");
-        
+        pathfinder = GetComponent<Pathfinder>();
     }
 
     void Update()
@@ -41,8 +42,8 @@ public class CharacterMove : MonoBehaviour
 
         if (movement != Vector2.zero)
         {
-            animator.SetFloat("MoveX", movement.x);
-            animator.SetFloat("MoveY", movement.y);
+            //animator.SetFloat("MoveX", movement.x);
+            //animator.SetFloat("MoveY", movement.y);
         }
 
         rigidbody2D.velocity = movement * speed;
@@ -71,8 +72,8 @@ public class CharacterMove : MonoBehaviour
 
                 if (path.Count > 1)
                 {
-                    animator.SetFloat("gridXChange", path[1].GridLocation.x - occupiedTile.GridLocation.x);
-                    animator.SetFloat("gridYChange", path[1].GridLocation.y - occupiedTile.GridLocation.y);
+                    //animator.SetFloat("gridXChange", path[1].GridLocation.x - occupiedTile.GridLocation.x);
+                    //animator.SetFloat("gridYChange", path[1].GridLocation.y - occupiedTile.GridLocation.y);
                 }
 
                 path.RemoveAt(0);
@@ -131,8 +132,8 @@ public class CharacterMove : MonoBehaviour
             //animator.SetFloat("gridYChange", path[0].GridLocation.y - occupiedTile.GridLocation.y);
         }
     }
-
     public void MoveTowardsActive(ActiveTileManager from) {
-        MoveTowardsTile(from.ActiveTile);
+        path = pathfinder.FindPath(OccupiedTile, (from.ActiveTile));
+
     }
 }

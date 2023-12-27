@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Pathfinder
+public class Pathfinder:MonoBehaviour
 {
     public List<TacticalTile> FindPath(TacticalTile start, TacticalTile end, int jumpHeight = 1)
     {
@@ -70,22 +70,26 @@ public class Pathfinder
         Vector2Int checkedLocation = new Vector2Int(currentTile.GridLocation.x, currentTile.GridLocation.y + 1);
         if (map.ContainsKey(checkedLocation))
         {
+            if (Mathf.Abs(map[checkedLocation].GridLocation.z - currentTile.GridLocation.z) <= jumpHeight)
             adjacentTiles.Add(map[checkedLocation]);
         }
         checkedLocation = new Vector2Int(currentTile.GridLocation.x, currentTile.GridLocation.y - 1);
         if (map.ContainsKey(checkedLocation))
         {
-            adjacentTiles.Add(map[checkedLocation]);
+            if (Mathf.Abs(map[checkedLocation].GridLocation.z - currentTile.GridLocation.z) <= jumpHeight)
+                adjacentTiles.Add(map[checkedLocation]);
         }
         checkedLocation = new Vector2Int(currentTile.GridLocation.x + 1, currentTile.GridLocation.y);
         if (map.ContainsKey(checkedLocation))
         {
-            adjacentTiles.Add(map[checkedLocation]);
+            if (Mathf.Abs(map[checkedLocation].GridLocation.z - currentTile.GridLocation.z) <= jumpHeight)
+                adjacentTiles.Add(map[checkedLocation]);
         }
         checkedLocation = new Vector2Int(currentTile.GridLocation.x - 1, currentTile.GridLocation.y);
         if (map.ContainsKey(checkedLocation))
         {
-            adjacentTiles.Add(map[checkedLocation]);
+            if (Mathf.Abs(map[checkedLocation].GridLocation.z - currentTile.GridLocation.z) <= jumpHeight)
+                adjacentTiles.Add(map[checkedLocation]);
         }
         return adjacentTiles;
     }
