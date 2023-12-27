@@ -151,7 +151,7 @@ PolygonCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -183,8 +183,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.4792459, y: 0.2497263}
-      - {x: 0.0027047992, y: 0.49686632}
-      - {x: -0.46979457, y: 0.24477726}
-      - {x: 0.0043834746, y: 0.010855995}
+    - - {x: 0.49650642, y: 0.2497263}
+      - {x: 0.000547532, y: 0.5054965}
+      - {x: -0.5, y: 0.2469348}
+      - {x: 0.0043834746, y: 0.000068272464}
   m_UseDelaunayMesh: 0

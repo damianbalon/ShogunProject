@@ -27,8 +27,7 @@ public class CharacterMove : MonoBehaviour
 
     void Update()
     {
-        HandleMovementInput();
-        
+        MoveAlongPath();
         
 
     }

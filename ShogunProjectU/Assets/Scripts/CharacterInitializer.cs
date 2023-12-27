@@ -17,11 +17,12 @@ public class CharacterInitializer : MonoBehaviour//this class automatically alig
     {
         if(character.OccupiedTile != null) Destroy(this);
         LayerMask mask = LayerMask.NameToLayer("Tactical");
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position,Vector2.zero, Mathf.Infinity, mask);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position,Vector2.zero);
         if(hits.Length > 0)
         {
             System.Array.Sort(hits, (x, y) => x.distance.CompareTo(y.distance));
             RaycastHit2D hit = hits[hits.Length - 1];
+            Debug.Log("Liczba trafeń: " + hits.Length);
             Debug.Log(hit.collider.gameObject);
             character.MoveOnTile(hit.collider.gameObject.GetComponent<TacticalTile>());
             Destroy(this);
