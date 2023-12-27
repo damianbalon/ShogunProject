@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class CharacterMove : MonoBehaviour
 {
+
     public float speed = 5f;
     private Animator animator;
     new private Rigidbody2D rigidbody2D;
@@ -18,11 +19,16 @@ public class CharacterMove : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         positionMarker = new GameObject("Position marker(" + name + ")");
+        
     }
 
     void Update()
     {
+        
         HandleMovementInput();
+        
+        
+
     }
 
     void HandleMovementInput()
