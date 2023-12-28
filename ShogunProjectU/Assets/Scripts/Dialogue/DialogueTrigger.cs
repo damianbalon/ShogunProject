@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-
-
-    [SerializeField]
-    private GameEvent ActiveDialogue;
+    [SerializeField] private List<TMP_Text> listOfDialogues;
 
     CharacterMove character;
+    [SerializeField]  DialogueMenager menager; 
 
     private bool playerInRange;
 
     private void Awake()
     {
         playerInRange = false;
+        character = GetComponent<CharacterMove>();
     }
 
     private void Update()
@@ -24,13 +24,9 @@ public class DialogueTrigger : MonoBehaviour
 
         if (playerInRange && Input.GetKeyDown("space"))
         {
-            if (character)
-            {
-                ActiveDialogue.Raise();
-            }
-        }
 
-        playerInRange = false;
+            menager.StartDialogue(listOfDialogues[0]);
+        }
 
     }
 
