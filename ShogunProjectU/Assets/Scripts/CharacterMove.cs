@@ -18,6 +18,12 @@ public class CharacterMove : MonoBehaviour
     public TacticalTile OccupiedTile {
         get {return occupiedTile;}
     }
+
+    public Pathfinder Pathfinder
+    {
+        get { return pathfinder; }
+    }
+
     void Start()
     {
         animator = GetComponent<Animator>();
