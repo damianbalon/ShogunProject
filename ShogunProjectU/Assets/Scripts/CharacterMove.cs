@@ -9,14 +9,16 @@ public class CharacterMove : MonoBehaviour
     private Animator animator;
     new private Rigidbody2D rigidbody2D;
     private TacticalTile occupiedTile;
+    public TacticalTile OccupiedTile {
+        get {return occupiedTile;}
+    }
     private GameObject positionMarker;
     private float yOffset;
     private Pathfinder pathfinder;
 
     private List<TacticalTile> path = new List<TacticalTile>();
-
-    public TacticalTile OccupiedTile {
-        get {return occupiedTile;}
+    public List<TacticalTile> Path {
+        set {path = value;}
     }
     void Start()
     {
@@ -134,6 +136,5 @@ public class CharacterMove : MonoBehaviour
     }
     public void MoveTowardsActive(ActiveTileManager from) {
         path = pathfinder.FindPath(OccupiedTile, (from.ActiveTile));
-
     }
 }
