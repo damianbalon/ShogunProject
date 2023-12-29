@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.IO;
+
 
 public class DialogueMenager : MonoBehaviour
 {
+    [SerializeField] private TMP_Text m_Text;
+
     private string[] lines;
     void Start()
     {
@@ -17,7 +21,7 @@ public class DialogueMenager : MonoBehaviour
         
     }
 
-    public void StartDialogue(TMP_Text dialogue)
+    public void StartDialogue(TextAsset dialogue)
     {
         lines = dialogue.text.Split('\n');
         WriteDialogue();
@@ -26,7 +30,7 @@ public class DialogueMenager : MonoBehaviour
 
     private void WriteDialogue()
     {
-
+        m_Text.text = lines[0];
 
     }
 

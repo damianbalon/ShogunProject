@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using System.IO;
+
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField] private List<TMP_Text> listOfDialogues;
+    [SerializeField] private List<TextAsset> listOfDialogues;
 
     CharacterMove character;
     [SerializeField]  DialogueMenager menager; 
@@ -18,7 +20,7 @@ public class DialogueTrigger : MonoBehaviour
         character = GetComponent<CharacterMove>();
     }
 
-    private void Update()
+    private void  Update()
     {
         playerInRange = PlayerInAdjactedTiles();
 
