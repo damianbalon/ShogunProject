@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//MUSISZ TO PODPIĄĆ TO OBIEKTU Z KLASĄ PARTYMANAGER
+//MUSISZ TO PODPIĄĆ DO OBIEKTU Z KLASĄ PARTYMANAGER
 public class PartyMovement : MonoBehaviour
 {
     [SerializeField] private Pathfinder pathfinder;
+    
     private PartyManager manager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        manager = GetComponent<PartyManager>();
     }
 
     // Update is called once per frame

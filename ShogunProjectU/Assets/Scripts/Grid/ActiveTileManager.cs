@@ -13,6 +13,7 @@ public class ActiveTileManager : MonoBehaviour
     private void ChangeActiveTile(TacticalTile tile) {
         activeTile = tile;
         ActiveTileChangedEvent.Raise();
+        Debug.Log(activeTile);
     }
 
     private TacticalTile activeTile;

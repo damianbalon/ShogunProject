@@ -96,7 +96,6 @@ public class CharacterMove : MonoBehaviour
         occupiedTile = tile;
     }
 
-    //Ten patent z isBlocked to bym przerobił ale to jeszcze pomyślę
     public void MoveOnTile(TacticalTile tile)
     {
         transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, tile.transform.position.z + 1.3f);

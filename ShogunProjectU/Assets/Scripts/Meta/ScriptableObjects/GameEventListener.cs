@@ -11,7 +11,7 @@
         {Event.RegisterListener(this);}
         private void OnDisable()
         {Event.UnregisterListener(this);}
-        public void OnEventRaised()
+        public virtual void OnEventRaised() //virtual will allow for coded responses with custom listeners. Still not sure if this is a good idea.
         {Response.Invoke();}
 
     }
