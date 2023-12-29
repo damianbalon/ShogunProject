@@ -18,7 +18,7 @@ public class CharacterMove : MonoBehaviour
 
     private List<TacticalTile> path = new List<TacticalTile>();
     public List<TacticalTile> Path {
-        set {path = value;}
+        set {path = new List<TacticalTile>(value);}
     }
     void Start()
     {
@@ -31,8 +31,6 @@ public class CharacterMove : MonoBehaviour
     void Update()
     {
         MoveAlongPath();
-        
-
     }
 
     void HandleMovementInput() //chyba do testowania obracania postaci
@@ -72,13 +70,15 @@ public class CharacterMove : MonoBehaviour
             {
                 MoveOnTile(targetTile);
 
-                if (path.Count > 1)
+                path.RemoveAt(0);
+
+                if (path.Count > 0)
                 {
-                    //animator.SetFloat("gridXChange", path[1].GridLocation.x - occupiedTile.GridLocation.x);
-                    //animator.SetFloat("gridYChange", path[1].GridLocation.y - occupiedTile.GridLocation.y);
+                    //animator.SetFloat("gridXChange", path[0].GridLocation.x - occupiedTile.GridLocation.x);
+                    //animator.SetFloat("gridYChange", path[0].GridLocation.y - occupiedTile.GridLocation.y);
                 }
 
-                path.RemoveAt(0);
+                
             }
         }
     }
