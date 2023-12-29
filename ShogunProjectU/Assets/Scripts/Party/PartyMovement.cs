@@ -6,8 +6,6 @@ using UnityEngine;
 //MUSISZ TO PODPIĄĆ DO OBIEKTU Z KLASĄ PARTYMANAGER
 public class PartyMovement : MonoBehaviour
 {
-    [SerializeField] private Pathfinder pathfinder;
-    
     private PartyManager manager;
     // Start is called before the first frame update
     void Start()
@@ -23,13 +21,13 @@ public class PartyMovement : MonoBehaviour
     }
 
     public void MoveTowardsTile(TacticalTile tile) {
-        var path = pathfinder.FindPath(manager.Party[0].GetComponent<CharacterMove>().OccupiedTile, tile);
+        var path = Pathfinder.FindPath(manager.Party[0].GetComponent<CharacterMove>().OccupiedTile, tile);
         Debug.Log("Długość drogi: " + path.Count);
         manager.Party[0].GetComponent<CharacterMove>().Path = path;
         int n = manager.Party.Count, i = 1;
         while(i < n && path.Count > 0) {
             path.RemoveAt(path.Count - 1);
-            path = pathfinder.FindPath(manager.Party[i].GetComponent<CharacterMove>().OccupiedTile, path[path.Count-1]);
+            path = Pathfinder.FindPath(manager.Party[i].GetComponent<CharacterMove>().OccupiedTile, path[path.Count-1]);
             manager.Party[i].GetComponent<CharacterMove>().Path = path;
             i++;
         }

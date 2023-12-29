@@ -254,7 +254,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -255397956, guid: 3769a9581fe5f21478bfab81d3e83e40, type: 3}
+  m_Sprite: {fileID: 879532558, guid: 3769a9581fe5f21478bfab81d3e83e40, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -977,7 +977,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -255397956, guid: 3769a9581fe5f21478bfab81d3e83e40, type: 3}
+  m_Sprite: {fileID: -405698148, guid: 3769a9581fe5f21478bfab81d3e83e40, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1027,6 +1027,14 @@ PrefabInstance:
       propertyPath: party.Array.data[2]
       value: 
       objectReference: {fileID: 1393884639}
+    - target: {fileID: -1954525605634581190, guid: 3740ec5612f917644ada988a05d6a4df, type: 3}
+      propertyPath: party.Array.data[3]
+      value: 
+      objectReference: {fileID: 1393884639}
+    - target: {fileID: -1954525605634581190, guid: 3740ec5612f917644ada988a05d6a4df, type: 3}
+      propertyPath: party.Array.data[4]
+      value: 
+      objectReference: {fileID: 1393884639}
     - target: {fileID: 718075135446713512, guid: 3740ec5612f917644ada988a05d6a4df, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1071,7 +1079,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Party Handler
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1602737477291058507, guid: 3740ec5612f917644ada988a05d6a4df, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 718075135446713512, guid: 3740ec5612f917644ada988a05d6a4df, type: 3}

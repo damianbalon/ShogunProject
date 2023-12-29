@@ -14,7 +14,6 @@ public class CharacterMove : MonoBehaviour
     }
     private GameObject positionMarker;
     private float yOffset;
-    private Pathfinder pathfinder;
 
     private List<TacticalTile> path = new List<TacticalTile>();
     public List<TacticalTile> Path {
@@ -25,7 +24,6 @@ public class CharacterMove : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         positionMarker = new GameObject("Position marker(" + name + ")");
-        pathfinder = GetComponent<Pathfinder>();
     }
 
     void Update()
@@ -134,6 +132,6 @@ public class CharacterMove : MonoBehaviour
         }
     }
     public void MoveTowardsActive(ActiveTileManager from) {
-        path = pathfinder.FindPath(OccupiedTile, (from.ActiveTile));
+        path = Pathfinder.FindPath(OccupiedTile, (from.ActiveTile));
     }
 }
