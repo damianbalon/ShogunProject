@@ -14,23 +14,25 @@ public class DialogueTrigger : MonoBehaviour
 
     private bool playerInRange;
     private bool isTrigered;
+    private bool inQuestion;
 
     private void Awake()
     {
         playerInRange = false;
         isTrigered = false;
         character = GetComponent<CharacterMove>();
+        inQuestion= false;
     }
 
     private void LateUpdate()
     {
         playerInRange = PlayerInAdjactedTiles();
 
-        if (playerInRange && Input.GetKeyDown("space") && !isTrigered)
+        if (playerInRange && Input.GetKeyDown("space") && !isTrigered && !inQuestion)
         {
             isTrigered=true;
             menager.StartDialogue(listOfDialogues[0]);
-        }else if(playerInRange && Input.GetKeyDown("space"))
+        }else if(playerInRange && Input.GetKeyDown("space") && !inQuestion)
         {
             menager.WriteNextLine();
         }
@@ -61,5 +63,13 @@ public class DialogueTrigger : MonoBehaviour
         isTrigered = false;
     }
 
+    public void InQuestion()
+    {
+        inQuestion = true;
+    }
 
+    public void OutOfQuestion()
+    {
+        inQuestion = false;
+    }
 }
