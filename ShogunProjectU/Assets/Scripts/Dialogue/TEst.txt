@@ -1,0 +1,10 @@
+ID|
+Tekst 1|
+7|
+ID|
+Tekst 2|
+7|
+ID|
+Tekst 3|
+10|
+
