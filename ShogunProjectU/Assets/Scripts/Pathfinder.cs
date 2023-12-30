@@ -77,7 +77,7 @@ public static class Pathfinder
         checkedLocation = new Vector2Int(currentTile.GridLocation.x, currentTile.GridLocation.y - 1);
         if (map.ContainsKey(checkedLocation))
         {
-              if (Mathf.Abs(map[checkedLocation].GridLocation.z - currentTile.GridLocation.z) <= jumpHeight)
+            if (Mathf.Abs(map[checkedLocation].GridLocation.z - currentTile.GridLocation.z) <= jumpHeight)
                 adjacentTiles.Add(map[checkedLocation]);
         }
         checkedLocation = new Vector2Int(currentTile.GridLocation.x + 1, currentTile.GridLocation.y);
