@@ -7,15 +7,19 @@ public class PartyMoveCommand : GameEventListener
 {
     private PartyMovement movementModule;
     [SerializeField] private ActiveTileManager activeTileSource;
-    void Update() {
-        if(movementModule == null) {
+    void Update()
+    {
+        if (movementModule == null)
+        {
             movementModule = GetComponentInParent<PartyMovement>();
-            if(GetComponentInParent<PartyMovement>() == null) {
+            if (GetComponentInParent<PartyMovement>() == null)
+            {
                 Debug.Log("No Party Movement script detected in parent object. The Move Command will now terminate.");
                 Destroy(this);
             }
         }
-        if(activeTileSource == null) {
+        if (activeTileSource == null)
+        {
             Debug.Log("No reference to active tile manager. The Move Command will now terminate.");
             Destroy(this);
         }
