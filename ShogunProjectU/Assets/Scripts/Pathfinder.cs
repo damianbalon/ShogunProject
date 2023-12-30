@@ -43,6 +43,7 @@ public static class Pathfinder
                 }
             }
         }
+        Debug.Log("Failed");
         return new List<TacticalTile>();
     }
 
