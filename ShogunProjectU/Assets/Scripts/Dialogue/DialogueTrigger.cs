@@ -39,7 +39,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private bool PlayerInAdjactedTiles()
     {
-        List <TacticalTile> adjacted = Pathfinder.GetAdjacentTiles(character.OccupiedTile, 1);
+        List <TacticalTile> adjacted = character.Pathfinder.GetAdjacentTiles(character.OccupiedTile, 1);
         
         for(int i=0; i< adjacted.Count; i++)
         {
