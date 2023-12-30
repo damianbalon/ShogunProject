@@ -13,21 +13,26 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField]  DialogueMenager menager; 
 
     private bool playerInRange;
+    private bool isTrigered;
 
     private void Awake()
     {
         playerInRange = false;
+        isTrigered = false;
         character = GetComponent<CharacterMove>();
     }
 
-    private void  Update()
+    private void LateUpdate()
     {
         playerInRange = PlayerInAdjactedTiles();
 
-        if (playerInRange && Input.GetKeyDown("space"))
+        if (playerInRange && Input.GetKeyDown("space") && !isTrigered)
         {
-
+            isTrigered=true;
             menager.StartDialogue(listOfDialogues[0]);
+        }else if(playerInRange && Input.GetKeyDown("space"))
+        {
+            menager.WriteNextLine();
         }
 
     }
@@ -49,6 +54,11 @@ public class DialogueTrigger : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void DialogueDisactivate()
+    {
+        isTrigered = false;
     }
 
 

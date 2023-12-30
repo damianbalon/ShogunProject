@@ -2,20 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-<<<<<<< HEAD
 using System.Runtime.CompilerServices;
 using System;
-=======
->>>>>>> parent of 3a6d56b (Comit)
 using System.IO;
 
 
 public class DialogueMenager : MonoBehaviour
 {
     [SerializeField] private TMP_Text m_Text;
+    [SerializeField] private GameEvent DialogueActivated;
+    [SerializeField] private GameEvent DialogueDisactivated;
 
     private string[] lines;
-<<<<<<< HEAD
     private int currentLine = -1;
     private int typeofdata = 0 ;
 
@@ -26,29 +24,10 @@ public class DialogueMenager : MonoBehaviour
         DialogueActivated.Raise();
         lines = dialogue.text.Split('|');
         WriteNextLine();
-=======
-    void Start()
-    {
-        
-    }
-
-
-    void Update()
-    {
-        
-    }
-
-    public void StartDialogue(TextAsset dialogue)
-    {
-        lines = dialogue.text.Split('\n');
-        WriteDialogue();
-
->>>>>>> parent of 3a6d56b (Comit)
     }
 
     private void WriteDialogue()
     {
-<<<<<<< HEAD
         
         if (currentLine < lines.Length)
         {
@@ -81,11 +60,5 @@ public class DialogueMenager : MonoBehaviour
             WriteDialogue();
         }
      }
-=======
-        m_Text.text = lines[0];
-
-    }
-
->>>>>>> parent of 3a6d56b (Comit)
 }
 
