@@ -25,6 +25,12 @@ public class CharacterMove : MonoBehaviour
             else Debug.LogWarning("Empty path passed; ignoring");
         }
     }
+
+    public Pathfinder Pathfinder
+    {
+        get { return pathfinder; }
+    }
+
     void Start()
     {
         animator = GetComponent<Animator>();
