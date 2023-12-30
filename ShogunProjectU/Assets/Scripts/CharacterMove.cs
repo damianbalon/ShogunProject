@@ -26,11 +26,6 @@ public class CharacterMove : MonoBehaviour
         }
     }
 
-    public Pathfinder Pathfinder
-    {
-        get { return pathfinder; }
-    }
-
     void Start()
     {
         animator = GetComponent<Animator>();
