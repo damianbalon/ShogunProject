@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public static class Pathfinder
+public class Pathfinder:MonoBehaviour
 {
-    public static List<TacticalTile> FindPath(TacticalTile start, TacticalTile end, int jumpHeight = 1)
+    public List<TacticalTile> FindPath(TacticalTile start, TacticalTile end, int jumpHeight = 1)
     {
         List<TacticalTile> openList = new List<TacticalTile>();
         List<TacticalTile> closedList = new List<TacticalTile>();
@@ -43,11 +43,10 @@ public static class Pathfinder
                 }
             }
         }
-        Debug.Log("Failed");
         return new List<TacticalTile>();
     }
 
-    private static List<TacticalTile> GenerateFinalPath(TacticalTile start, TacticalTile end)
+    private List<TacticalTile> GenerateFinalPath(TacticalTile start, TacticalTile end)
     {
         List<TacticalTile> finalPath = new List<TacticalTile>();
         TacticalTile currentTile = end;
@@ -59,12 +58,12 @@ public static class Pathfinder
         return finalPath;
     }
 
-    private static int GetManhattanDistance(TacticalTile start, TacticalTile adjacent)
+    private int GetManhattanDistance(TacticalTile start, TacticalTile adjacent)
     {
         return Mathf.Abs(start.GridLocation.x - adjacent.GridLocation.x) + Mathf.Abs(start.GridLocation.y - adjacent.GridLocation.y);
     }
 
-    public static List<TacticalTile> GetAdjacentTiles(TacticalTile currentTile, int jumpHeight)
+    public List<TacticalTile> GetAdjacentTiles(TacticalTile currentTile, int jumpHeight)
     {
         var map = TacticalMap.Instance.map;
         List<TacticalTile> adjacentTiles = new List<TacticalTile>();

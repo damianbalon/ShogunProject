@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TacticalTile : MonoBehaviour
 {
-    [NonSerialized] public int G, H;
+    public int G, H;
     public int F { get { return G + H; } }
     public TacticalTile previous;
 

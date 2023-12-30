@@ -9,32 +9,37 @@ public class CharacterMove : MonoBehaviour
     private Animator animator;
     new private Rigidbody2D rigidbody2D;
     private TacticalTile occupiedTile;
+    private GameObject positionMarker;
+    private float yOffset;
+    private Pathfinder pathfinder;
+
+    private List<TacticalTile> path = new List<TacticalTile>();
+
     public TacticalTile OccupiedTile {
         get {return occupiedTile;}
     }
-    public TacticalTile originTile;
-    private GameObject positionMarker;
-    private float yOffset;
+<<<<<<< HEAD
+=======
 
-    private List<TacticalTile> path = new List<TacticalTile>();
-    public List<TacticalTile> Path {
-        set {
-            path = new List<TacticalTile>(value);
-            //value.RemoveAll(null);
-            if(value.Count > 0) RegisterOccupant(value[value.Count - 1]);
-            else Debug.LogWarning("Empty path passed; ignoring");
-        }
+    public Pathfinder Pathfinder
+    {
+        get { return pathfinder; }
     }
+
+>>>>>>> parent of 485649c (Merge branch 'main' into dialogues)
     void Start()
     {
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         positionMarker = new GameObject("Position marker(" + name + ")");
+        pathfinder = GetComponent<Pathfinder>();
     }
 
     void Update()
     {
         MoveAlongPath();
+        
+
     }
 
     void HandleMovementInput() //chyba do testowania obracania postaci
@@ -53,18 +58,18 @@ public class CharacterMove : MonoBehaviour
         rigidbody2D.velocity = movement * speed;
     }
 
-    private void MoveAlongPath()
+    void MoveAlongPath()
     {
         if (path.Count > 0)
         {
             TacticalTile targetTile = path[0];
-            Vector2 startPosition = originTile.transform.position;
+            Vector2 startPosition = occupiedTile.transform.position;
 
             positionMarker.transform.position = new Vector2(transform.position.x, transform.position.y - yOffset);
 
             float step = speed * Time.deltaTime;
             float distanceToTarget = Vector2.Distance(positionMarker.transform.position, targetTile.transform.position);
-            float xFraction = distanceToTarget / Vector2.Distance(originTile.transform.position, targetTile.transform.position);
+            float xFraction = distanceToTarget / Vector2.Distance(occupiedTile.transform.position, targetTile.transform.position);
             yOffset = ((-Mathf.Pow(((xFraction - 0.5f) * 2), 2)) + 1) * 0.5f;
 
             positionMarker.transform.position = Vector2.MoveTowards(positionMarker.transform.position, targetTile.transform.position, step);
@@ -74,22 +79,20 @@ public class CharacterMove : MonoBehaviour
             {
                 MoveOnTile(targetTile);
 
-                path.RemoveAt(0);
-
-                if (path.Count > 0)
+                if (path.Count > 1)
                 {
-                    //animator.SetFloat("gridXChange", path[0].GridLocation.x - originTile.GridLocation.x);
-                    //animator.SetFloat("gridYChange", path[0].GridLocation.y - originTile.GridLocation.y);
+                    //animator.SetFloat("gridXChange", path[1].GridLocation.x - occupiedTile.GridLocation.x);
+                    //animator.SetFloat("gridYChange", path[1].GridLocation.y - occupiedTile.GridLocation.y);
                 }
 
-                
+                path.RemoveAt(0);
             }
         }
     }
 
     private void UnregisterOccupant() {
         if(occupiedTile != null) {
-            if(occupiedTile.OccupyingObject == gameObject) occupiedTile.OccupyingObject = null;
+            occupiedTile.OccupyingObject = null;
             occupiedTile = null;
         }
     }
@@ -100,23 +103,19 @@ public class CharacterMove : MonoBehaviour
         occupiedTile = tile;
     }
 
+    //Ten patent z isBlocked to bym przerobił ale to jeszcze pomyślę
     public void MoveOnTile(TacticalTile tile)
     {
         transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, tile.transform.position.z + 1.3f);
         GetComponent<SpriteRenderer>().sortingOrder = tile.GetComponent<SpriteRenderer>().sortingOrder;
 
-        if(path.Count == 0) RegisterOccupant(tile);
-        originTile = tile;
+        RegisterOccupant(tile);
 
         yOffset = 0;
         positionMarker.transform.position = transform.position;
     }
 
-    public void MoveTowardsActive(ActiveTileManager from) {
-        path = Pathfinder.FindPath(originTile, (from.ActiveTile));
-    }
-
-    public void MoveTowardsTile(TacticalTile tile) //???
+    public void MoveTowardsTile(TacticalTile tile)
     {
         if (path.Count > 0)
         {
@@ -138,8 +137,12 @@ public class CharacterMove : MonoBehaviour
 
         if (path.Count > 0)
         {
-            //animator.SetFloat("gridXChange", path[0].GridLocation.x - originTile.GridLocation.x);
-            //animator.SetFloat("gridYChange", path[0].GridLocation.y - originTile.GridLocation.y);
+            //animator.SetFloat("gridXChange", path[0].GridLocation.x - occupiedTile.GridLocation.x);
+            //animator.SetFloat("gridYChange", path[0].GridLocation.y - occupiedTile.GridLocation.y);
         }
+    }
+    public void MoveTowardsActive(ActiveTileManager from) {
+        path = pathfinder.FindPath(OccupiedTile, (from.ActiveTile));
+
     }
 }
