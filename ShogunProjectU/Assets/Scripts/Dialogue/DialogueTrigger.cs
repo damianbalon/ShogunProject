@@ -9,6 +9,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private List<TextAsset> listOfDialogues;
     CharacterMove character;
     [SerializeField] DialogueMenager menager;
+    [SerializeField] List<GameEvent> dialogEvents;
 
     private bool playerInRange;
 
@@ -25,7 +26,7 @@ public class DialogueTrigger : MonoBehaviour
         if (playerInRange && Input.GetKeyDown("space") && !DialogueStatus.IsTrigered && !DialogueStatus.InQuestion)
         {
             DialogueStatus.IsTrigered = true;
-            menager.StartDialogue(listOfDialogues[0]);
+            menager.StartDialogue(listOfDialogues[0], this);
         }
         else if (playerInRange && Input.GetKeyDown("space") && !DialogueStatus.InQuestion)
         {
@@ -50,4 +51,8 @@ public class DialogueTrigger : MonoBehaviour
         return false;
     }
 
+    public void DialogueEvent(int whatEvent)
+    {
+        dialogEvents[whatEvent].Raise();
+    }
 }

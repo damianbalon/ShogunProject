@@ -1,20 +1,19 @@
-Dialog Character|
+Dialog Character
 Tekst 1
-|7|
-ID|
+6
+ID
 Tekst 2
-|7|
-Main Character (2)|
+Dialog Character
 Tekst 3
-|10
-|?Chuj ci do dupy|
-14
-|?DO chuja Pana|
-17|
-Dialog Character|
+9
+?Chuj ci do dupy
+13
+?DO chuja Pana
+16
+Dialog Character
 Tekst 1
-|20|
-Main Character (2)|
+20
+Main Character (2)
 Tekst 3
-|20|
+20
 

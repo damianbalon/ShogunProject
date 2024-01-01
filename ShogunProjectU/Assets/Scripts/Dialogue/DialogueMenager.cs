@@ -18,13 +18,14 @@ public class DialogueMenager : MonoBehaviour
 
     [SerializeField] private QuestionMenager QuestionMenager;
 
+    private DialogueTrigger whoTrigger;
     private string[] lines;
     private int currentLine = -1;
     private int typeofdata = 0;
 
     void Start()
     {
-
+        whoTrigger = null;
     }
 
     void Update()
@@ -32,12 +33,14 @@ public class DialogueMenager : MonoBehaviour
 
     }
 
-    public void StartDialogue(TextAsset dialogue) {
+    public void StartDialogue(TextAsset dialogue, DialogueTrigger sendedWhoTrigger) {
 
+        whoTrigger = sendedWhoTrigger;
         currentLine = -1;
         typeofdata = 0;
         DialogueActivated.Raise();
-        lines = dialogue.text.Split('|');
+        Char[] delimiters = { '\n', '|' };
+        lines = dialogue.text.Split(delimiters);
         WriteNextLine();
     }
 
@@ -47,9 +50,20 @@ public class DialogueMenager : MonoBehaviour
        
             switch (typeofdata)
             {
-                case 0: string id = lines[currentLine];
+                case 0:
+                if (char.IsDigit(lines[currentLine][0]))
+                {
+                    int whatEvent = Int16.Parse(lines[currentLine]);
+                    whoTrigger.DialogueEvent(whatEvent);
+                    typeofdata--;
+                    break;
+                };
 
-                    GameObject characterObject = GameObject.Find(id);
+                string id = lines[currentLine];
+
+
+
+                GameObject characterObject = GameObject.Find(id);
 
                     if (characterObject != null)
                     {
