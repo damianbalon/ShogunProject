@@ -1,16 +1,15 @@
-[System.Serializable]
-public class DialogueStatus
+public static class DialogueStatus
 {
-    private bool isTrigered;
-    private bool inQuestion;
+    private static bool isTrigered = false;
+    private static bool inQuestion = false;
 
-    public bool IsTrigered
+    public static bool IsTrigered
     {
         get { return isTrigered; }
         set { isTrigered = value; }
     }
 
-    public bool InQuestion
+    public static bool InQuestion
     {
         get { return inQuestion; }
         set { inQuestion = value; }
