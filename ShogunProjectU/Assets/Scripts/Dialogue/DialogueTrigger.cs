@@ -4,51 +4,45 @@ using TMPro;
 using UnityEngine;
 using System.IO;
 
-
 public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField] private List<TextAsset> listOfDialogues;
-
     CharacterMove character;
-    [SerializeField]  DialogueMenager menager; 
+    [SerializeField] DialogueMenager menager;
 
     private bool playerInRange;
-    private bool isTrigered;
-    private bool inQuestion;
+    private DialogueStatus dialogueStatus;
 
     private void Awake()
     {
         playerInRange = false;
-        isTrigered = false;
         character = GetComponent<CharacterMove>();
-        inQuestion= false;
+        dialogueStatus = new DialogueStatus();
     }
 
     private void LateUpdate()
     {
         playerInRange = PlayerInAdjactedTiles();
 
-        if (playerInRange && Input.GetKeyDown("space") && !isTrigered && !inQuestion)
+        if (playerInRange && Input.GetKeyDown("space") && !dialogueStatus.IsTrigered && !dialogueStatus.InQuestion)
         {
-            isTrigered=true;
+            dialogueStatus.IsTrigered = true;
             menager.StartDialogue(listOfDialogues[0]);
-        }else if(playerInRange && Input.GetKeyDown("space") && !inQuestion)
+        }
+        else if (playerInRange && Input.GetKeyDown("space") && !dialogueStatus.InQuestion)
         {
             menager.WriteNextLine();
         }
-
     }
 
     private bool PlayerInAdjactedTiles()
     {
-        List <TacticalTile> adjacted = Pathfinder.GetAdjacentTiles(character.OccupiedTile, 1);
- 
-        for(int i=0; i< adjacted.Count; i++)
+        List<TacticalTile> adjacted = Pathfinder.GetAdjacentTiles(character.OccupiedTile, 1);
+
+        for (int i = 0; i < adjacted.Count; i++)
         {
             if (adjacted[i].OccupyingObject != null)
             {
-
-
                 if (adjacted[i].OccupyingObject.tag == "Player")
                 {
                     return true;
@@ -60,16 +54,16 @@ public class DialogueTrigger : MonoBehaviour
 
     public void DialogueDisactivate()
     {
-        isTrigered = false;
+        dialogueStatus.IsTrigered = false;
     }
 
     public void InQuestion()
     {
-        inQuestion = true;
+        dialogueStatus.InQuestion = true;
     }
 
     public void OutOfQuestion()
     {
-        inQuestion = false;
+        dialogueStatus.InQuestion = false;
     }
 }

@@ -32,8 +32,10 @@ public class DialogueMenager : MonoBehaviour
 
     }
 
-    public void StartDialogue(TextAsset dialogue)
-    {
+    public void StartDialogue(TextAsset dialogue) {
+
+        currentLine = -1;
+        typeofdata = 0;
         DialogueActivated.Raise();
         lines = dialogue.text.Split('|');
         WriteNextLine();

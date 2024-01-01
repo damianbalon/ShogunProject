@@ -69,6 +69,7 @@ public class QuestionMenager : MonoBehaviour
             Destroy(buttons[i]);
         }
         buttons.Clear();
+        howManyQuestins = 0;
     }
 
     public void HandleAnsver(ButtonControler buttoncontroller)
