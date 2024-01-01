@@ -82,7 +82,8 @@ public class DialogueMenager : MonoBehaviour
             {
                 if (lines[currentLine][0] == '?')
                 {
-
+                    m_Text.text = "";
+                    TextCharacterName.text += "";
                     QuestionStart.Raise();
                     QuestionMenager.CreateQuestions(m_Text, lines, currentLine);
                     break;
@@ -99,7 +100,7 @@ public class DialogueMenager : MonoBehaviour
 
     public void AnswerQuestion(int questionSelected)
     {
-        currentLine += questionSelected+2;
+        currentLine += (questionSelected)*2+1;
         currentLine = Int16.Parse(lines[currentLine]) - 2;
         WriteNextLine();
         QuestionEnd.Raise();
