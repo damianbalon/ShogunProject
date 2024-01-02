@@ -5,6 +5,7 @@ using TMPro;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System;
+using System.Reflection;
 
 public class DialogueMenager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class DialogueMenager : MonoBehaviour
 
     [SerializeField] private QuestionMenager QuestionMenager;
 
+    private Character maincharacter; 
+
     private DialogueTrigger whoTrigger;
     private string[] lines;
     private int currentLine = -1;
@@ -26,6 +29,7 @@ public class DialogueMenager : MonoBehaviour
     void Start()
     {
         whoTrigger = null;
+        maincharacter = GameObject.Find("Main Character").GetComponent<Character>();
     }
 
     void Update()
@@ -94,7 +98,7 @@ public class DialogueMenager : MonoBehaviour
         {
             currentLine++;
 
-            if (currentLine < lines.Length)
+            if (currentLine < lines.Length -1 )
             {
                 if (lines[currentLine][0] == '?')
                 {
@@ -103,6 +107,20 @@ public class DialogueMenager : MonoBehaviour
                     QuestionStart.Raise();
                     QuestionMenager.CreateQuestions(m_Text, lines, currentLine);
                     break;
+                };
+
+                if (lines[currentLine][0] == '!')
+                {
+                    string Test = lines[currentLine].Substring(1);
+                    currentLine++; 
+                    int dificulty = Int16.Parse(lines[currentLine]);
+                    currentLine++;
+                    int sukcesy = DiceRoller.RollDice(maincharacter.GetAttributeValue(Test) - dificulty);
+                    if (sukcesy == 0) {
+
+                        currentLine += 3 ;
+                    };
+                    
                 };
 
                 WriteDialogue();

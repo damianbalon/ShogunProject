@@ -10,6 +10,7 @@ Tekst 3
 13
 ?DO chuja Pana
 16
+!integrity|-3
 Dialog Character
 Tekst 1
 20
