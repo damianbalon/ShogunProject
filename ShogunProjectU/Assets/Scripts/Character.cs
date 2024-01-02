@@ -85,14 +85,40 @@ public class Character : MonoBehaviour
         }
 
     }
-        void Start()
+
+    public void IncreaseJustice()
     {
-        // Initialization if needed
+        Justice = Mathf.Min(Justice + 1, 7);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IncreaseCourage()
     {
-        // Update if needed
+        Courage = Mathf.Min(Courage + 1, 7);
     }
+
+    public void IncreaseCompassion()
+    {
+        Compassion = Mathf.Min(Compassion + 1, 7);
+    }
+
+    public void IncreaseRespect()
+    {
+        Respect = Mathf.Min(Respect + 1, 7);
+    }
+
+    public void IncreaseIntegrity()
+    {
+        Integrity = Mathf.Min(Integrity + 1, 7);
+    }
+
+    public void IncreaseHonor()
+    {
+        Honor = Mathf.Min(Honor + 1, 7);
+    }
+
+    public void IncreaseLoyalty()
+    {
+        Loyalty = Mathf.Min(Loyalty + 1, 7);
+    }
+
 }

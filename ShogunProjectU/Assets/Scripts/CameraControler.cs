@@ -3,6 +3,10 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private float baseMovementSpeed;
+    [SerializeField] private float zoomSpeed = 5f;
+    [SerializeField] private float minZoom = 2f;
+    [SerializeField] private float maxZoom = 10f;
+
     public BoxCollider2D cameraBox;
     public Rigidbody2D cameraBody;
 
@@ -32,7 +36,28 @@ public class CameraController : MonoBehaviour
     {
         // Check for manual camera movement
         HandleManualMovementInput();
+
+        // Handle zooming with mouse scroll wheel
+        HandleZooming();
     }
+
+    private void HandleZooming()
+    {
+        float zoomInput = Input.mouseScrollDelta.y;
+
+        if (zoomInput != 0)
+        {
+            float targetZoom = Mathf.Clamp(GetComponent<Camera>().orthographicSize - zoomInput * zoomSpeed, minZoom, maxZoom);
+
+            // Use Mathf.Lerp to smoothly interpolate between current and target zoom values
+            float newZoom = Mathf.Lerp(GetComponent<Camera>().orthographicSize, targetZoom, Time.deltaTime * 5f);
+            GetComponent<Camera>().orthographicSize = newZoom;
+
+            // Scale camera's collider to match new viewport size
+            ScaleCameraCollider();
+        }
+    }
+
 
     void FixedUpdate()
     {

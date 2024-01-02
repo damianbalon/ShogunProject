@@ -19,7 +19,7 @@ public class CharacterPanel : MonoBehaviour
         }
         IsOn = false;
         // Wyœwietl informacje o postaci
-        UpdateCharacterInfo();
+        
     }
 
     void UpdateCharacterInfo()
@@ -53,6 +53,11 @@ public class CharacterPanel : MonoBehaviour
                 Off.Raise();
                 IsOn = false;
             }
+        }
+
+        if(IsOn == true) {
+
+            UpdateCharacterInfo();
         }
     }
 }
