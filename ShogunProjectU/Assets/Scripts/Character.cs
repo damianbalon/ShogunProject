@@ -65,19 +65,19 @@ public class Character : MonoBehaviour
     {
         switch (attributeName.ToLower())
         {
-            case "!justice":
+            case "justice":
                 return Justice;
-            case "!courage":
+            case "courage":
                 return Courage;
-            case "!compassion":
+            case "compassion":
                 return Compassion;
-            case "!respect":
+            case "respect":
                 return Respect;
-            case "!integrity":
+            case "integrity":
                 return Integrity;
-            case "!honor":
+            case "honor":
                 return Honor;
-            case "!loyalty":
+            case "loyalty":
                 return Loyalty;
             default:
                 // Handle unknown attribute name
