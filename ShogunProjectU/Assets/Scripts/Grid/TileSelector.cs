@@ -22,7 +22,7 @@ public class TileSelector : MonoBehaviour
             RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction);
 
             System.Array.Sort(hits, (x, y) => x.distance.CompareTo(y.distance));
-        if (hits.Length > 0)
+        if (hits.Length > 0 && hits[hits.Length - 1].collider.gameObject.layer == LayerMask.NameToLayer("Tactical"))
         {
             return hits[hits.Length - 1].collider.GetComponent<TacticalTile>();
         }
