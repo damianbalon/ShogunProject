@@ -11,20 +11,20 @@ public class CharacterPanel : MonoBehaviour
     bool IsOn; 
     void Start()
     {
-        // Sprawdü, czy obiekt Character zosta≥ przypisany
+        // Sprawd≈∫, czy obiekt Character zosta≈Ç przypisany
         if (character == null)
         {
             Debug.LogError("Character not assigned to CharacterPanel!");
             return;
         }
         IsOn = false;
-        // Wyúwietl informacje o postaci
+        // Wy≈õwietl informacje o postaci
         
     }
 
     void UpdateCharacterInfo()
     {
-        // UtwÛrz tekst z informacjami o postaci
+        // Utw√≥rz tekst z informacjami o postaci
         string characterInfo =
             "Justice:    " + character.Justice + "\n" +
             "Courage:   " + character.Courage + "\n" +

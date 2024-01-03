@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class ActiveTileManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameEvent ActiveTileChangedEvent;
+    [SerializeField] private GameEvent ActiveTileChangedEvent;
 
-    [SerializeField]
-    private GameEvent ActiveTileClickedEvent;
+    [SerializeField] private GameEvent ActiveTileClickedEvent;
 
     private void ChangeActiveTile(TacticalTile tile) {
         activeTile = tile;
@@ -32,13 +30,8 @@ public class ActiveTileManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             TacticalTile clickedTile = GetComponent<TileSelector>().GetMouseoverTile();
-            if(clickedTile != null) {
-                if(clickedTile == activeTile) ActiveTileClickedEvent.Raise();
-                else {
-                    ChangeActiveTile(clickedTile);
-                }
-            }
-            else ChangeActiveTile(null);
+            if(clickedTile != null && clickedTile == activeTile) ActiveTileClickedEvent.Raise();
+            else ChangeActiveTile(clickedTile);
         }
     }
 }
