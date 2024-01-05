@@ -25,4 +25,11 @@ public static class DiceRoller
 
         return successes > 0 ? specialEffects+1 : 0;
     }
+    public static int RollDiceRaw(int numberOfDice) {
+        int score = 0;
+        for(int i = 0; i < numberOfDice; i++) {
+            score += Random.Range(1, 6);
+        }
+        return score;
+    }
 }
